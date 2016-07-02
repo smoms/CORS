@@ -16,7 +16,7 @@ res.set('Access-Control-Allow-Origin', '*');
 next();
 }; */
 
-/* var handleCors = function (req, res, next) {
+var handleCors = function (req, res, next) {
 	res.set('Access-Control-Allow-Origin', 'http://localhost:1111');
 	if (isPreflight(req)) {
 		console.log('Received a preflight request!');
@@ -26,12 +26,12 @@ next();
 		return;
 	}
 	next();
-}; */
+};
 
 var SERVER_PORT = 9999;
 var serverapp = express();
 serverapp.use(express.static(__dirname));
-//serverapp.use(handleCors);
+serverapp.use(handleCors);
 serverapp.get('/api/posts', function (req, res) {
 	res.json(POSTS);
 });
