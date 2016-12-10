@@ -1,0 +1,26 @@
+	<html>
+		<body>
+			<form onsubmit="handleLogin(); return false;">
+				Username: <input type="text" id="username"></input>
+				Password: <input type="password" id="password"></input>
+				<input type="submit" id="btnSubmit" value="Login"></input>
+			</form>
+			<script>
+				var handleLogin = function() {
+				var username = document.getElementById('username').value;
+				
+				
+				var now = new Date();
+				var time = now.getTime();
+				var expireTime = time + 1000*36000;
+				now.setTime(expireTime);
+				document.cookie = 'username=' + username + ';expires='+now.toGMTString()+';path=/';
+  
+				console.log('cookie set!');
+				
+				window.location = 'http://localhost:1111/client2.html';
+				//window.location = 'http://127.0.0.1:9999/api/posts';
+				}
+			</script>
+		</body>
+	</html>
